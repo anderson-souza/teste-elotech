@@ -6,6 +6,8 @@ module.exports = {
   extends: [
     'plugin:react/recommended',
     'airbnb',
+    'plugin:prettier/recommended',
+    "prettier/react",
   ],
   globals: {
     Atomics: 'readonly',
@@ -20,8 +22,10 @@ module.exports = {
   },
   plugins: [
     'react',
+    'prettier'
   ],
   rules: {
-    "linebreak-style": 0
+    "linebreak-style": 0,
+    "prettier/prettier": "error"
   },
 };
