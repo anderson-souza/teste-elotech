@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-filename-extension */
 import React from 'react';
 import Container from '@material-ui/core/Container';
 import Header from './components/Header/Header';
@@ -8,9 +9,7 @@ function App() {
 
       <Header />
 
-      <Container>
-
-      </Container>
+      <Container />
 
     </div>
   );
