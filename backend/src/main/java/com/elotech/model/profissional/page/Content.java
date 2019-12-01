@@ -1,23 +1,24 @@
 
-package com.elotech.model.profissional.detalhe;
+package com.elotech.model.profissional.page;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({ "id", "codigo", "nome", "status" })
-public class MicroArea {
+@JsonPropertyOrder({ "id", "nome", "tipo", "status" })
+public class Content {
 
 	@JsonProperty("id")
 	private Integer id;
-	@JsonProperty("codigo")
-	private Integer codigo;
 	@JsonProperty("nome")
 	private String nome;
+	@JsonProperty("tipo")
+	private String tipo;
 	@JsonProperty("status")
 	private Boolean status;
 
@@ -31,16 +32,6 @@ public class MicroArea {
 		this.id = id;
 	}
 
-	@JsonProperty("codigo")
-	public Integer getCodigo() {
-		return codigo;
-	}
-
-	@JsonProperty("codigo")
-	public void setCodigo(Integer codigo) {
-		this.codigo = codigo;
-	}
-
 	@JsonProperty("nome")
 	public String getNome() {
 		return nome;
@@ -49,6 +40,16 @@ public class MicroArea {
 	@JsonProperty("nome")
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	@JsonProperty("tipo")
+	public String getTipo() {
+		return tipo;
+	}
+
+	@JsonProperty("tipo")
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
 	}
 
 	@JsonProperty("status")
@@ -63,13 +64,13 @@ public class MicroArea {
 
 	@Override
 	public String toString() {
-		return new ToStringBuilder(this).append("id", id).append("codigo", codigo).append("nome", nome)
+		return new ToStringBuilder(this).append("id", id).append("nome", nome).append("tipo", tipo)
 				.append("status", status).toString();
 	}
 
 	@Override
 	public int hashCode() {
-		return new HashCodeBuilder().append(codigo).append(nome).append(id).append(status).toHashCode();
+		return new HashCodeBuilder().append(nome).append(tipo).append(id).append(status).toHashCode();
 	}
 
 	@Override
@@ -77,11 +78,11 @@ public class MicroArea {
 		if (other == this) {
 			return true;
 		}
-		if ((other instanceof MicroArea) == false) {
+		if ((other instanceof Content) == false) {
 			return false;
 		}
-		MicroArea rhs = ((MicroArea) other);
-		return new EqualsBuilder().append(codigo, rhs.codigo).append(nome, rhs.nome).append(id, rhs.id)
+		Content rhs = ((Content) other);
+		return new EqualsBuilder().append(nome, rhs.nome).append(tipo, rhs.tipo).append(id, rhs.id)
 				.append(status, rhs.status).isEquals();
 	}
 

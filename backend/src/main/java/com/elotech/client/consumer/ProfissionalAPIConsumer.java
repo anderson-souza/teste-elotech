@@ -5,7 +5,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import com.elotech.model.Profissional;
-import com.elotech.model.ProfissionalDetalhe;
+import com.elotech.model.profissional.detalhe.ProfissionalDetalhe;
+import com.elotech.model.profissional.page.ProfissionalPage;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -39,6 +40,19 @@ public class ProfissionalAPIConsumer {
 			e.printStackTrace();
 			return null;
 		}
+	}
+
+	public ProfissionalPage listarRegistrosProfissional() {
+		Request request = new Request.Builder().url(RESOURCEURL).method("GET", null).build();
+		try (Response response = client.newCall(request).execute()) {
+			ProfissionalPage profissionalPage = objectMapper.readValue(response.body().string(),
+					ProfissionalPage.class);
+			System.out.println(profissionalPage);
+			return profissionalPage;
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	public ProfissionalDetalhe buscarRegistro(Long id) {

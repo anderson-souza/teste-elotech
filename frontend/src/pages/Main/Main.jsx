@@ -27,7 +27,7 @@ export default function Main() {
       .get(id)
       .then(response => {
         const { data } = response;
-        setProfissionais(data);
+        setProfissionais(data.content);
       })
       .catch(error => {
         console.log(error);
