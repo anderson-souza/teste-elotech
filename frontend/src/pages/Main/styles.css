@@ -1,0 +1,17 @@
+.main--root {
+    margin-top: 20px;
+    width: 100%;
+}
+
+.main--root .paper--root {
+    margin-top: 10px;
+}
+
+.main--root .tabela--botao {
+    margin-top: 10px;
+    background-color: #578fff;
+}
+
+.main--root .paper--root .table--row{
+    color: yellow;
+}

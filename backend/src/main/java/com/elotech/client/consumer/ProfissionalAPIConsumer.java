@@ -27,8 +27,7 @@ public class ProfissionalAPIConsumer {
 		Request request = new Request.Builder().url(RESOURCEURL).method("GET", null).build();
 		try (Response response = client.newCall(request).execute()) {
 
-			JsonNode rootNode = objectMapper.readTree(response.body().bytes());
-			JsonNode contentNode = rootNode.path("content");
+			JsonNode contentNode = objectMapper.readTree(response.body().bytes()).path("content");
 
 			List<Profissional> listaProfissionais = Arrays
 					.asList(objectMapper.treeToValue(contentNode, Profissional[].class));
