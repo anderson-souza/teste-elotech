@@ -5,10 +5,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.elotech.model.Profissional;
+import com.elotech.model.ProfissionalDetalhe;
 import com.elotech.service.ProfissionalService;
 
 @RestController
@@ -22,6 +24,12 @@ public class ProfissionalResource {
 	@GetMapping
 	public List<Profissional> listar() {
 		return profissionalService.listar();
+	}
+
+	@CrossOrigin
+	@GetMapping("/{id}")
+	public ProfissionalDetalhe buscar(@PathVariable Long id) {
+		return profissionalService.buscar(id);
 	}
 
 }

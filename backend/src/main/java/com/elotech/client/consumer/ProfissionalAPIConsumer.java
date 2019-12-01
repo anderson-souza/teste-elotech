@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import com.elotech.model.Profissional;
+import com.elotech.model.ProfissionalDetalhe;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -23,7 +24,7 @@ public class ProfissionalAPIConsumer {
 		objectMapper = new ObjectMapper();
 	}
 
-	public List<Profissional> consumir() {
+	public List<Profissional> listarRegistros() {
 		Request request = new Request.Builder().url(RESOURCEURL).method("GET", null).build();
 		try (Response response = client.newCall(request).execute()) {
 
@@ -38,6 +39,19 @@ public class ProfissionalAPIConsumer {
 			e.printStackTrace();
 			return null;
 		}
+	}
+
+	public ProfissionalDetalhe buscarRegistro(Long id) {
+		Request request = new Request.Builder().url(RESOURCEURL + "/" + id).method("GET", null).build();
+		try (Response response = client.newCall(request).execute()) {
+			ProfissionalDetalhe profissionalDetalhe = objectMapper.readValue(response.body().string(),
+					ProfissionalDetalhe.class);
+			System.out.println(profissionalDetalhe);
+			return profissionalDetalhe;
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 }

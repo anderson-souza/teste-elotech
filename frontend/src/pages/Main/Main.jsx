@@ -7,20 +7,24 @@ import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import IconButton from "@material-ui/core/IconButton";
 import DeleteIcon from "@material-ui/icons/Delete";
+import VisibilityIcon from "@material-ui/icons/Visibility";
 import EditIcon from "@material-ui/icons/Edit";
 import Tooltip from "@material-ui/core/Tooltip";
 import { Button, Typography } from "@material-ui/core";
-import ButtonGroup from "@material-ui/core/ButtonGroup";
+import TextField from "@material-ui/core/TextField";
+import Grid from "@material-ui/core/Grid";
+
 import api from "../../services/api";
+
 import "./styles.css";
 
 export default function Main() {
   const [profissionais, setProfissionais] = useState([]);
+  const [id, setId] = useState();
 
   async function loadProfissionais() {
-    console.log("Profissionais Carregados");
     await api
-      .get()
+      .get(id)
       .then(response => {
         const { data } = response;
         setProfissionais(data);
@@ -34,9 +38,38 @@ export default function Main() {
     loadProfissionais();
   }, []);
 
+  const handleChange = event => {
+    setId(event.target.value);
+  };
+
+  function handlePesquisarButton() {}
+
   return (
     <div className="main--root">
       <Typography variant="h4">Listagem de profissionais</Typography>
+
+      <Grid container spacing={2}>
+        <Grid item>
+          <TextField
+            onChange={handleChange}
+            type="number"
+            id="standard-basic"
+            label="ID"
+          />
+        </Grid>
+
+        <Grid item>
+          <Button
+            onClick={() => handlePesquisarButton()}
+            className="tabela--botao"
+            variant="contained"
+            color="primary"
+          >
+            Pesquisar
+          </Button>
+        </Grid>
+      </Grid>
+
       <Paper className="paper--root">
         <Table className="table-root">
           <TableHead className="table--head">
@@ -56,18 +89,21 @@ export default function Main() {
                   {row.status ? "Ativo" : "Inativo"}
                 </TableCell>
                 <TableCell align="left">
-                  <ButtonGroup>
-                    <Tooltip title="Editar">
-                      <IconButton>
-                        <EditIcon />
-                      </IconButton>
-                    </Tooltip>
-                    <Tooltip title="Deletar">
-                      <IconButton>
-                        <DeleteIcon />
-                      </IconButton>
-                    </Tooltip>
-                  </ButtonGroup>
+                  <Tooltip title="Detalhes">
+                    <IconButton>
+                      <VisibilityIcon />
+                    </IconButton>
+                  </Tooltip>
+                  <Tooltip title="Editar">
+                    <IconButton>
+                      <EditIcon />
+                    </IconButton>
+                  </Tooltip>
+                  <Tooltip title="Deletar">
+                    <IconButton>
+                      <DeleteIcon />
+                    </IconButton>
+                  </Tooltip>
                 </TableCell>
               </TableRow>
             ))}
