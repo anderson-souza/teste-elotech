@@ -4,7 +4,7 @@ import Container from "@material-ui/core/Container";
 import Header from "./components/Header/Header";
 import Main from "./pages/Main/Main";
 import Footer from "./components/Footer/Footer";
-import './AppStyles.css';
+import "./AppStyles.css";
 
 function App() {
   return (
