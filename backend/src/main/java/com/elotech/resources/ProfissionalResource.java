@@ -18,13 +18,6 @@ public class ProfissionalResource {
 	@Autowired
 	private ProfissionalService profissionalService;
 
-	/*
-	 * @CrossOrigin
-	 * 
-	 * @GetMapping public List<Profissional> listar() { return
-	 * profissionalService.listar(); }
-	 */
-
 	@CrossOrigin
 	@GetMapping
 	public ProfissionalPage listar() {

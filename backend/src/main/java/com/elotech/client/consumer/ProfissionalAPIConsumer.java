@@ -1,13 +1,9 @@
 package com.elotech.client.consumer;
 
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.List;
 
-import com.elotech.model.Profissional;
 import com.elotech.model.profissional.detalhe.ProfissionalDetalhe;
 import com.elotech.model.profissional.page.ProfissionalPage;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import okhttp3.OkHttpClient;
@@ -23,23 +19,6 @@ public class ProfissionalAPIConsumer {
 	public ProfissionalAPIConsumer() {
 		client = new OkHttpClient().newBuilder().build();
 		objectMapper = new ObjectMapper();
-	}
-
-	public List<Profissional> listarRegistros() {
-		Request request = new Request.Builder().url(RESOURCEURL).method("GET", null).build();
-		try (Response response = client.newCall(request).execute()) {
-
-			JsonNode contentNode = objectMapper.readTree(response.body().bytes()).path("content");
-
-			List<Profissional> listaProfissionais = Arrays
-					.asList(objectMapper.treeToValue(contentNode, Profissional[].class));
-
-			return listaProfissionais;
-
-		} catch (IOException e) {
-			e.printStackTrace();
-			return null;
-		}
 	}
 
 	public ProfissionalPage listarRegistrosProfissional() {
