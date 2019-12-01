@@ -11,8 +11,6 @@ import VisibilityIcon from "@material-ui/icons/Visibility";
 import EditIcon from "@material-ui/icons/Edit";
 import Tooltip from "@material-ui/core/Tooltip";
 import { Button, Typography } from "@material-ui/core";
-import TextField from "@material-ui/core/TextField";
-import Grid from "@material-ui/core/Grid";
 
 import api from "../../services/api";
 
@@ -20,11 +18,10 @@ import "./styles.css";
 
 export default function Main() {
   const [profissionais, setProfissionais] = useState([]);
-  const [id, setId] = useState();
 
   async function loadProfissionais() {
     await api
-      .get(id)
+      .get()
       .then(response => {
         const { data } = response;
         setProfissionais(data.content);
@@ -38,38 +35,9 @@ export default function Main() {
     loadProfissionais();
   }, []);
 
-  const handleChange = event => {
-    setId(event.target.value);
-  };
-
-  function handlePesquisarButton() {}
-
   return (
     <div className="main--root">
       <Typography variant="h4">Listagem de profissionais</Typography>
-
-      <Grid container spacing={2}>
-        <Grid item>
-          <TextField
-            onChange={handleChange}
-            type="number"
-            id="standard-basic"
-            label="ID"
-          />
-        </Grid>
-
-        <Grid item>
-          <Button
-            onClick={() => handlePesquisarButton()}
-            className="tabela--botao"
-            variant="contained"
-            color="primary"
-          >
-            Pesquisar
-          </Button>
-        </Grid>
-      </Grid>
-
       <Paper className="paper--root">
         <Table className="table-root">
           <TableHead className="table--head">
@@ -90,7 +58,7 @@ export default function Main() {
                 </TableCell>
                 <TableCell align="left">
                   <Tooltip title="Detalhes">
-                    <IconButton>
+                    <IconButton href={`/profissionais/${row.id}`}>
                       <VisibilityIcon />
                     </IconButton>
                   </Tooltip>

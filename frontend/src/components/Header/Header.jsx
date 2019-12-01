@@ -1,5 +1,5 @@
 import React from "react";
-import { AppBar, Toolbar, Typography } from "@material-ui/core";
+import { AppBar, Toolbar, Typography, Link } from "@material-ui/core";
 import "./styles.css";
 
 export default function Header() {
@@ -8,7 +8,9 @@ export default function Header() {
       <AppBar position="static">
         <Toolbar className="header--toolbar">
           <Typography className="header--toolbar--typhograpy" variant="h6">
-            Teste Elotech
+            <Link underline="none" color="inherit" href="/">
+              Teste Elotech
+            </Link>
           </Typography>
         </Toolbar>
       </AppBar>

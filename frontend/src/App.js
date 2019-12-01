@@ -2,8 +2,9 @@
 import React from "react";
 import Container from "@material-ui/core/Container";
 import Header from "./components/Header/Header";
-import Main from "./pages/Main/Main";
 import Footer from "./components/Footer/Footer";
+import Routes from "./routes";
+
 import "./AppStyles.css";
 
 function App() {
@@ -12,7 +13,7 @@ function App() {
       <Header />
 
       <Container maxWidth="xl">
-        <Main />
+        <Routes />
       </Container>
       <Footer />
     </div>
