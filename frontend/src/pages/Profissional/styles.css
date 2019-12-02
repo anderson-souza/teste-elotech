@@ -1,4 +1,11 @@
-.profissional-info {
-    margin-top: 20px;
+.profissional-info {    
+    padding: 10px;
+}
+
+.div--dados {
     padding: 20px;
+}
+
+.div--dados--detalhe {
+    margin-bottom: 10px;
 }

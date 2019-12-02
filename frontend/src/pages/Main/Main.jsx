@@ -32,6 +32,7 @@ export default function Main() {
   }
 
   useEffect(() => {
+    document.title = "Listagem de Profissionais";
     loadProfissionais();
   }, []);
 
