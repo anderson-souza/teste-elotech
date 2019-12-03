@@ -12,7 +12,7 @@ function App() {
     <div className='App'>
       <Header />
 
-      <Container maxWidth='xl'>
+      <Container maxWidth='lg'>
         <Routes />
       </Container>
       <Footer />

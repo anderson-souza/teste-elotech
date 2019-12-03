@@ -31,7 +31,11 @@ export default function Main() {
       });
   }
 
-  useEffect(() => {
+  const deleteProfissional = (id: any) => {
+    setProfissionais(profissionais.filter(profissionais => profissionais["id"] !== id));
+  }
+
+  useEffect(() => { 
     document.title = "Listagem de Profissionais";
     loadProfissionais();
   }, []);
@@ -64,12 +68,12 @@ export default function Main() {
                     </IconButton>
                   </Tooltip>
                   <Tooltip title='Editar'>
-                    <IconButton>
+                    <IconButton disabled>
                       <EditIcon />
                     </IconButton>
                   </Tooltip>
                   <Tooltip title='Deletar'>
-                    <IconButton>
+                    <IconButton onClick={() => deleteProfissional(row.id)}>
                       <DeleteIcon />
                     </IconButton>
                   </Tooltip>

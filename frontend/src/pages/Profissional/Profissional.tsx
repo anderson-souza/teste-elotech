@@ -3,13 +3,14 @@ import api from "../../services/api";
 import { Typography } from "@material-ui/core";
 import Paper from "@material-ui/core/Paper";
 import Divider from "@material-ui/core/Divider";
+import Grid from "@material-ui/core/Grid";
 import "./styles.css";
 
 export default class Profissional extends Component<any, any> {
   constructor(props: any) {
     super(props);
     this.state = {
-      profissional: {}
+      profissional: []
     };
   }
 
@@ -56,18 +57,11 @@ export default class Profissional extends Component<any, any> {
               <Typography>{profissional.identidade}</Typography>
               <Divider />
             </div>
-            <div className='div--dados--detalhe'>
-              <Typography>
-                <b>Telefone</b>
-              </Typography>
-              <Typography>{profissional.telefone}</Typography>
-              <Divider />
-            </div>
             <div>
               <Typography>
-                <b>E-mail</b>
+                <b>Cartão Nacional de Saúde (CNS)</b>
               </Typography>
-              <Typography>{profissional.email}</Typography>
+              <Typography>{profissional.cns}</Typography>              
             </div>
           </Paper>
         </div>
@@ -75,18 +69,42 @@ export default class Profissional extends Component<any, any> {
         <br />
 
         <div>
-          <Typography variant='h6'>Endereço</Typography>
-          <Paper>
-            <div className='div--dados'>
-              <Typography>
-                {profissional.logradouro}, {profissional.numero}
-              </Typography>
-              <Typography>
-                {profissional.complemento} - {profissional.bairro}
-              </Typography>
-              <Typography>CEP {profissional.cep}</Typography>
-            </div>
-          </Paper>
+          <Grid container spacing={3}>
+            <Grid item xs={6}>
+              <Typography variant='h6'>Endereço</Typography>
+              <Paper>
+                <div className='div--dados'>
+                  <Typography>
+                    {profissional.logradouro}, {profissional.numero}
+                  </Typography>
+                  <Typography>
+                    {profissional.complemento} - {profissional.bairro}
+                  </Typography>
+                  <Typography>CEP {profissional.cep}</Typography>
+                </div>
+              </Paper>
+            </Grid>
+            <Grid item xs={6}>
+              <Typography variant='h6'>Contato</Typography>
+              <Paper>
+                <div className='div--dados'>
+                  <div className='div--dados--detalhe'>
+                    <Typography>
+                      <b>Telefone</b>
+                    </Typography>
+                    <Typography>{profissional.telefone}</Typography>
+                    <Divider />
+                  </div>
+                  <div>
+                    <Typography>
+                      <b>E-mail</b>
+                    </Typography>
+                    <Typography>{profissional.email}</Typography>
+                  </div>
+                </div>
+              </Paper>
+            </Grid>
+          </Grid>
         </div>
 
         <br />
