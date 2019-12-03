@@ -9,10 +9,10 @@ import "./AppStyles.css";
 
 function App() {
   return (
-    <div className="App">
+    <div className='App'>
       <Header />
 
-      <Container maxWidth="xl">
+      <Container maxWidth='xl'>
         <Routes />
       </Container>
       <Footer />

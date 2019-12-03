@@ -21,7 +21,7 @@ export default function Main() {
 
   async function loadProfissionais() {
     await api
-      .get()
+      .get("")
       .then(response => {
         const { data } = response;
         setProfissionais(data.content);
@@ -37,38 +37,38 @@ export default function Main() {
   }, []);
 
   return (
-    <div className="main--root">
-      <Typography variant="h4">Listagem de profissionais</Typography>
-      <Paper className="paper--root">
-        <Table className="table-root">
-          <TableHead className="table--head">
-            <TableRow className="table--row">
-              <TableCell align="left">Nome</TableCell>
-              <TableCell align="left">Tipo</TableCell>
-              <TableCell align="left">Status</TableCell>
-              <TableCell size="small">Ações</TableCell>
+    <div className='main--root'>
+      <Typography variant='h4'>Listagem de profissionais</Typography>
+      <Paper className='paper--root'>
+        <Table className='table-root'>
+          <TableHead className='table--head'>
+            <TableRow className='table--row'>
+              <TableCell align='left'>Nome</TableCell>
+              <TableCell align='left'>Tipo</TableCell>
+              <TableCell align='left'>Status</TableCell>
+              <TableCell size='small'>Ações</TableCell>
             </TableRow>
           </TableHead>
-          <TableBody className="table--body">
-            {profissionais.map(row => (
-              <TableRow className="table--row" key={row.id}>
-                <TableCell align="left">{row.nome}</TableCell>
-                <TableCell align="left">{row.tipo}</TableCell>
-                <TableCell align="left">
+          <TableBody className='table--body'>
+            {profissionais.map((row: any) => (
+              <TableRow className='table--row' key={row.id}>
+                <TableCell align='left'>{row.nome}</TableCell>
+                <TableCell align='left'>{row.tipo}</TableCell>
+                <TableCell align='left'>
                   {row.status ? "Ativo" : "Inativo"}
                 </TableCell>
-                <TableCell align="left">
-                  <Tooltip title="Detalhes">
+                <TableCell align='left'>
+                  <Tooltip title='Detalhes'>
                     <IconButton href={`/profissionais/${row.id}`}>
                       <VisibilityIcon />
                     </IconButton>
                   </Tooltip>
-                  <Tooltip title="Editar">
+                  <Tooltip title='Editar'>
                     <IconButton>
                       <EditIcon />
                     </IconButton>
                   </Tooltip>
-                  <Tooltip title="Deletar">
+                  <Tooltip title='Deletar'>
                     <IconButton>
                       <DeleteIcon />
                     </IconButton>
@@ -81,9 +81,9 @@ export default function Main() {
       </Paper>
       <Button
         onClick={() => loadProfissionais()}
-        className="tabela--botao"
-        variant="contained"
-        color="primary"
+        className='tabela--botao'
+        variant='contained'
+        color='primary'
       >
         Atualizar Dados
       </Button>
