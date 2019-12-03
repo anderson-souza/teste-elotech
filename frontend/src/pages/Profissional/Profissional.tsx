@@ -10,7 +10,9 @@ export default class Profissional extends Component<any, any> {
   constructor(props: any) {
     super(props);
     this.state = {
-      profissional: []
+      profissional: {
+        identidadeUf: {}
+      }
     };
   }
 
@@ -18,13 +20,13 @@ export default class Profissional extends Component<any, any> {
     let { id } = this.props.match.params;
     const response = await api.get(`/${id}`);
     this.setState({ profissional: response.data });
+    console.log(this.state.profissional);
   }
 
   render() {
     document.title = "Detalhes do Profissional";
 
     const { profissional } = this.state;
-    console.log(profissional);
     return (
       <div className='profissional-info'>
         <div>
@@ -45,6 +47,13 @@ export default class Profissional extends Component<any, any> {
             </div>
             <div className='div--dados--detalhe'>
               <Typography>
+                <b>Sexo</b>
+              </Typography>
+              <Typography>{profissional.sexo}</Typography>
+              <Divider />
+            </div>
+            <div className='div--dados--detalhe'>
+              <Typography>
                 <b>CPF</b>
               </Typography>
               <Typography>{profissional.cpf}</Typography>
@@ -54,14 +63,16 @@ export default class Profissional extends Component<any, any> {
               <Typography>
                 <b>Identidade</b>
               </Typography>
-              <Typography>{profissional.identidade}</Typography>
+              <Typography>
+                {profissional.identidade} / {profissional.identidadeUf.sigla}
+              </Typography>
               <Divider />
             </div>
             <div>
               <Typography>
                 <b>Cartão Nacional de Saúde (CNS)</b>
               </Typography>
-              <Typography>{profissional.cns}</Typography>              
+              <Typography>{profissional.cns}</Typography>
             </div>
           </Paper>
         </div>
