@@ -19,8 +19,7 @@ export default class Profissional extends Component<any, any> {
   async componentDidMount() {
     let { id } = this.props.match.params;
     const response = await api.get(`/${id}`);
-    this.setState({ profissional: response.data });
-    console.log(this.state.profissional);
+    this.setState({ profissional: response.data });    
   }
 
   render() {

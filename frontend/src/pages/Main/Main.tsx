@@ -27,7 +27,7 @@ export default function Main() {
         setProfissionais(data.content);
       })
       .catch(error => {
-        console.log(error);
+        
       });
   }
 
